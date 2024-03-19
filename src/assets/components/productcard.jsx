@@ -36,8 +36,8 @@ export function ProductCard({
                 <div className="col-7">
                   <div className="phonedetails">
                     <h6>{products.title}</h6>
-                    <label htmlFor="IphoneDetails">Details and core</label>
-                    <p></p>
+                    <label htmlFor="IphoneDetails">Details</label>
+                    <p>{products.description}</p>
                     <label htmlFor="IphoneDetails">
                       {" "}
                       Price : {products.price}{" "}
