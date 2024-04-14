@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import './App.css'
 import ProductsContainer from './assets/components/productcontainer'
+import { Test } from './assets/components/test'
 
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
         
         <ProductsContainer/>
        
-     
+     <Test/>
       
       </div>
       

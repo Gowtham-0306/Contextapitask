@@ -1,17 +1,23 @@
 import { useContext, useState } from "react";
 import { ProductContext } from "../context/productcontext";
+import { useDispatch , useSelector } from "react-redux";
+import { calculatePrice } from "../../redux/reducers/BlogReducer";
 export function ProductCard({
   products,
-  calculatePrice = () => {},
+ 
   cart = () => {},
 }) {
   const [selectedQuantity, setSelectedQuantity] = useState(0);
+  
 
+  const dispatch = useDispatch();
   function handlechange(event, id) {
+   
     var dat = event.target.value;
     console.log(`${id}im id`);
-    calculatePrice(dat, id);
+   
     setSelectedQuantity(dat);
+    dispatch(calculatePrice({ id, quantity: dat }));
   }
 
   function handleremove(id) {
@@ -41,6 +47,7 @@ export function ProductCard({
                     <label htmlFor="IphoneDetails">
                       {" "}
                       Price : {products.price}{" "}
+                     
                     </label>
                   </div>
                 </div>

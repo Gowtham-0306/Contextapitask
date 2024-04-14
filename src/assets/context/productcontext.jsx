@@ -1,21 +1,26 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
 import { createContext } from "react";
 
+import { storeBlogs } from "../../redux/reducers/BlogReducer";
+import { useDispatch, useSelector } from "react-redux";
+
 export const ProductContext = createContext({
   products: [],
   productstoshow: [],
   calculatePrice: () => {},
 });
 
+
 export default function ProductContextProvider({ children }) {
   const [products, setProducts] = useState([]);
-
+  const productss = useSelector((state) => state.blogs.data);
+  const dispatcher = useDispatch();
   useEffect(() => {
     const datas = {
         products: [
             {
               id: 1,
-              title: "iPhone 9",
+              title: "iPhone 9 pro",
               description: "An apple mobile which is nothing like apple",
               price: 549,
               discountPercentage: 12.96,
@@ -57,7 +62,7 @@ export default function ProductContextProvider({ children }) {
             },
             {
               id: 3,
-              title: "Samsung Universe 9",
+              title: "Samsung Universe 9 ",
               description:
                 "Samsung's new variant which goes beyond Galaxy to the Universe",
               price: 1249,
@@ -117,7 +122,7 @@ export default function ProductContextProvider({ children }) {
 
     var products = datas.products;
     setProducts(products);
-
+    dispatcher(storeBlogs(products));
     return () => {};
   }, []);
 
@@ -132,7 +137,7 @@ export default function ProductContextProvider({ children }) {
         return {
           ...product,
           Quantity: productQuantity,
-          total: productQuantity * product.price, // Calculate total here
+          total: productQuantity * product.price, // Calculate the total here
         };
       } else {
         return product;
